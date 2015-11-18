@@ -1,0 +1,7 @@
+{
+  "name": "phear-scanner",
+  "version": "0.0.1",
+  "dependencies": {
+    "libnmap": "^0.2.21"
+  }
+}
