@@ -56,6 +56,7 @@ App.Store.queue.process('418b3a196f9a8a9fb526e9be3f5e359d', function(job, done){
 function isItUp(data) {
     var deferred = Q.defer();
     console.log("IsitUp?", data.length)
+    console.log("HEEEEYYY", process.env.OPENSHIFT_DATA_DIR + "/nmap-7.00/nmap");
     var opts = {
         nmap: process.env.OPENSHIFT_DATA_DIR + "/nmap-7.00/nmap",
         range: data,
