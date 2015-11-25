@@ -4,7 +4,7 @@
  */
 
 var Q = require('q');
-console.log("HEEEEYYY", process.env.OPENSHIFT_DATA_DIR + "/nmap-7.00/nmap");
+console.log("HEEEEYYY", process.env.OPENSHIFT_DATA_DIR + "nmap-7.00/nmap");
 //TODO: Move to Core utils
 var ajv = require('ajv')();
 ajv.addSchema(require('../../schemas/nmap.json'), 'nmap');
@@ -58,7 +58,7 @@ function isItUp(data) {
     console.log("IsitUp?", data.length)
 
     var opts = {
-        nmap: process.env.OPENSHIFT_DATA_DIR + "/nmap-7.00/nmap",
+        nmap: process.env.OPENSHIFT_DATA_DIR + "nmap-7.00/nmap",
         range: data,
         flags: ["Pn", "sL", "--disable-arp-ping"]
     };
