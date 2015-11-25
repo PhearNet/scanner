@@ -4,7 +4,7 @@ var express = require('express');
 var fs      = require('fs');
 //console.log(process.env);
 //var App = require('./src/Controller/Scanner');
-var App = require('./App');
+var App = require('./src/App');
 
 
 var http = require('http');
