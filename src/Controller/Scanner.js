@@ -57,6 +57,7 @@ function isItUp(data) {
     var deferred = Q.defer();
     console.log("IsitUp?", data.length)
     var opts = {
+        nmap: process.env.OPENSHIFT_DATA_DIR + "/nmap-7.00/nmap",
         range: data,
         flags: ["Pn", "sL", "--disable-arp-ping"]
     };
