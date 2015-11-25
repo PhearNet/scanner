@@ -205,6 +205,7 @@ function config() {
     //var msgs = cqs.defaults(opts.msgs);
 
     var queue = kue.createQueue(opts.kue);
+
     process.once('SIGTERM', function (sig) {
         queue.shutdown(5000, function (err) {
             console.log('Kue shutdown: ', err || '');
