@@ -232,6 +232,6 @@ function config() {
     return {db: db, kue: kue, queue: queue};
 }
 
-kue.app.listen(3000);
+kue.app.listen(8080);
 Store.check();
 module.exports = Store;
