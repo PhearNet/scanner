@@ -3,8 +3,8 @@
 var express = require('express');
 var fs      = require('fs');
 //console.log(process.env);
-var App = require('./src/Controller/Scanner');
-
+//var App = require('./src/Controller/Scanner');
+var App = require('./App');
 
 
 var http = require('http');
