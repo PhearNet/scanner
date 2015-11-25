@@ -2,6 +2,7 @@
 //  OpenShift sample Node application
 var express = require('express');
 var fs      = require('fs');
+console.log(process.env);
 require('./src/Controller/Scanner');
 //var http = require('http');
 ///**
