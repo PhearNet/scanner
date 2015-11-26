@@ -2,8 +2,10 @@
 //  OpenShift sample Node application
 var express = require('express');
 var fs      = require('fs');
+//console.log(process.env);
 
 
+var http = require('http');
 /**
  *  Define the sample application.
  */
@@ -24,6 +26,7 @@ var SampleApp = function() {
         //  Set the environment variables we need.
         self.ipaddress = process.env.OPENSHIFT_NODEJS_IP;
         self.port      = process.env.OPENSHIFT_NODEJS_PORT || 8080;
+        //console.log(process.env);
 
         if (typeof self.ipaddress === "undefined") {
             //  Log errors on OpenShift but continue w/ 127.0.0.1 - this
@@ -61,9 +64,9 @@ var SampleApp = function() {
      */
     self.terminator = function(sig){
         if (typeof sig === "string") {
-           console.log('%s: Received %s - terminating sample app ...',
-                       Date(Date.now()), sig);
-           process.exit(1);
+            console.log('%s: Received %s - terminating sample app ...',
+                Date(Date.now()), sig);
+            process.exit(1);
         }
         console.log('%s: Node server stopped.', Date(Date.now()) );
     };
@@ -78,7 +81,7 @@ var SampleApp = function() {
 
         // Removed 'SIGPIPE' from the list - bugz 852598.
         ['SIGHUP', 'SIGINT', 'SIGQUIT', 'SIGILL', 'SIGTRAP', 'SIGABRT',
-         'SIGBUS', 'SIGFPE', 'SIGUSR1', 'SIGSEGV', 'SIGUSR2', 'SIGTERM'
+            'SIGBUS', 'SIGFPE', 'SIGUSR1', 'SIGSEGV', 'SIGUSR2', 'SIGTERM'
         ].forEach(function(element, index, array) {
             process.on(element, function() { self.terminator(element); });
         });
@@ -113,7 +116,9 @@ var SampleApp = function() {
      */
     self.initializeServer = function() {
         self.createRoutes();
-        self.app = express.createServer();
+        self.app = express();
+        self.app.use(App.Store.kue.app);
+        self.server = http.createServer(self.app);
 
         //  Add handlers for the app (from the routes).
         for (var r in self.routes) {
@@ -140,20 +145,33 @@ var SampleApp = function() {
      */
     self.start = function() {
         //  Start the app on the specific interface (and port).
-        self.app.listen(self.port, self.ipaddress, function() {
+        self.server.listen(self.port, self.ipaddress, function() {
             console.log('%s: Node server started on %s:%d ...',
-                        Date(Date.now() ), self.ipaddress, self.port);
+                Date(Date.now() ), self.ipaddress, self.port);
         });
     };
 
 };   /*  Sample Application.  */
 
+var cluster = require('cluster');
+
+var clusterWorkerSize = require('os').cpus().length;
+
+if (cluster.isMaster) {
+    /**
+     *  main():  Main code.
+     */
+    //require('./src/Controller/AddressData').createBlockJobs();
+    var App = require('./src/App');
+    var zapp = new SampleApp();
+    zapp.initialize();
+    zapp.start();
+    for (var i = 0; i < clusterWorkerSize; i++) {
+        cluster.fork();
+    }
+} else {
+    require('./src/Controller/Scanner');
+}
 
 
-/**
- *  main():  Main code.
- */
-var zapp = new SampleApp();
-zapp.initialize();
-zapp.start();
 
