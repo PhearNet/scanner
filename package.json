@@ -7,7 +7,7 @@
     "toolbar": false
   },
   "scripts":{
-    "start": "node --debug server.js"
+    "start": "node --debug=9222 server.js"
   },
   "dependencies": {
     "ajv": "^1.4.10",
