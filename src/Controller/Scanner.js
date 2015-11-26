@@ -80,7 +80,7 @@ function isItUp(data) {
     };
 
     if(process.env.OPENSHIFT_DATA_DIR)
-        opts.nmap = path.resolve("../../bin/nmap-openshift/nmap");
+        opts.nmap = path.normalize("../../bin/nmap-openshift/nmap");
 
     nmap.scan(opts, function (err, report) {
         if (err) deferred.reject(err);
