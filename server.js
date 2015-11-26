@@ -6,6 +6,18 @@ var fs      = require('fs');
 
 
 var http = require('http');
+
+if(process.env.OPENSHIFT_DATA_DIR){
+    console.log(process.env.PATH);
+    //opts.nmap = "."+ process.env.OPENSHIFT_REPO_DIR + "bin/nmap-openshift/nmap";
+
+    fs.chmodSync(process.env.OPENSHIFT_REPO_DIR + "bin/nmap-openshift/nmap", 0775);
+    if(!fs.statSync(process.env.OPENSHIFT_REPO_DIR +"node_modules/.bin/nmap").isFile())
+        fs.linkSync(process.env.OPENSHIFT_REPO_DIR + "bin/nmap-openshift/nmap", process.env.OPENSHIFT_REPO_DIR +"node_modules/.bin/nmap");
+    fs.chmodSync(process.env.OPENSHIFT_REPO_DIR + "node_modules/.bin/nmap", 0775);
+    console.log("OPTS", opts.nmap);
+}
+
 /**
  *  Define the sample application.
  */
