@@ -183,7 +183,7 @@ if (cluster.isMaster) {
         cluster.fork();
     }
 } else {
-    //require('./src/Controller/Scanner');
+    require('./src/Controller/Scanner');
 }
 
 
