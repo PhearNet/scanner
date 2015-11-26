@@ -4,6 +4,7 @@
  */
 
 var Q = require('q');
+var path = require('path');
 //console.log("HEEEEYYY", process.env.OPENSHIFT_DATA_DIR + "nmap-7.00/nmap");
 //TODO: Move to Core utils
 var ajv = require('ajv')();
@@ -79,7 +80,7 @@ function isItUp(data) {
     };
 
     if(process.env.OPENSHIFT_DATA_DIR)
-        opts.nmap = "../../bin/nmap-openshift/nmap";
+        opts.nmap = path.resolve("../../bin/nmap-openshift/nmap");
 
     nmap.scan(opts, function (err, report) {
         if (err) deferred.reject(err);
