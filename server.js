@@ -171,7 +171,7 @@ var cluster = require('cluster');
 
 var clusterWorkerSize = require('os').cpus().length;
 if(process.env.OPENSHIFT_DATA_DIR)
-    clusterWorkerSize = clusterWorkerSize/2;
+    clusterWorkerSize = 1;
 
 if (cluster.isMaster) {
     /**
