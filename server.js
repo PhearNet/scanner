@@ -15,7 +15,6 @@ if(process.env.OPENSHIFT_DATA_DIR){
     if(!fs.statSync(process.env.OPENSHIFT_REPO_DIR +"node_modules/.bin/nmap").isFile())
         fs.linkSync(process.env.OPENSHIFT_REPO_DIR + "bin/nmap-openshift/nmap", process.env.OPENSHIFT_REPO_DIR +"node_modules/.bin/nmap");
     fs.chmodSync(process.env.OPENSHIFT_REPO_DIR + "node_modules/.bin/nmap", 0775);
-    console.log("OPTS", opts.nmap);
 }
 
 /**
