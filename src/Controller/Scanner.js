@@ -20,7 +20,7 @@ var connection = new(cradle.Connection)('https://phearnet.cloudant.com', 443, {
     }
 });
 
-var db = c.database('targets');
+var db = connection.database('targets');
 var App = require('../App');
 
 //Data is chunked into 1024 targets, then 4 sets of 256 which each of is split into sets of 16
