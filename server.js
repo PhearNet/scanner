@@ -3,8 +3,6 @@
 var express = require('express');
 var fs      = require('fs');
 //console.log(process.env);
-//var App = require('./src/Controller/Scanner');
-var App = require('./src/App');
 
 
 var http = require('http');
@@ -155,12 +153,25 @@ var SampleApp = function() {
 
 };   /*  Sample Application.  */
 
+var cluster = require('cluster');
+
+var clusterWorkerSize = require('os').cpus().length;
+
+if (cluster.isMaster) {
+    /**
+     *  main():  Main code.
+     */
+    //require('./src/Controller/AddressData').createBlockJobs();
+    var App = require('./src/App');
+    var zapp = new SampleApp();
+    zapp.initialize();
+    zapp.start();
+    for (var i = 0; i < clusterWorkerSize; i++) {
+        cluster.fork();
+    }
+} else {
+    require('./src/Controller/Scanner');
+}
 
 
-/**
- *  main():  Main code.
- */
-var zapp = new SampleApp();
-zapp.initialize();
-zapp.start();
 
