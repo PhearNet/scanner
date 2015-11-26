@@ -88,7 +88,7 @@ function isItUp(data) {
     console.log("IsitUp?", data.length);
     var opts = {
         range: data,
-        flags: ["Pn", "sL", "--disable-arp-ping"]
+        flags: ["Pn", "--disable-arp-ping"]
     };
 
     nmap.scan(opts, function (err, report) {
