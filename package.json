@@ -6,6 +6,9 @@
     "frame": true,
     "toolbar": false
   },
+  "scripts":{
+    "start": "node --debug server.js"
+  },
   "dependencies": {
     "ajv": "^1.4.10",
     "ajv-i18n": "^0.1.1",
