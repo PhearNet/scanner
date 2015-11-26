@@ -41,7 +41,8 @@ App.Store.queue.process('418b3a196f9a8a9fb526e9be3f5e6b35', function(job, done){
                     //TODO: Add validation
                     App.Store.conn.targets.merge(addr, report[addr], function(err, res){
                         if(err){
-                            done(new Error(err,addr,report[addr]));
+                            job.log(addr,report[addr]);
+                            done(new Error(err));
                             console.log('Error in Store Merge', err, addr, report[addr]);
                             throw new Error(err);
                         } else targetblocksuccess++
