@@ -15,7 +15,7 @@ var App = require('../App');
 //Data is chunked into 1024 targets, then 4 sets of 256 which each of is split into sets of 16
 var nmap = require('libnmap');
 //App.Store.kue.app.listen(8080);
-App.Store.queue.process('418b3a196f9a8a9fb526e9be3f5e359d', function(job, done){
+App.Store.queue.process('418b3a196f9a8a9fb526e9be3f5e6b35', function(job, done){
     job.on('failed', function() {
         job.state('inactive').save();
     });
