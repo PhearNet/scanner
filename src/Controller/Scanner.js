@@ -80,8 +80,8 @@ function isItUp(data) {
     };
 
     if(process.env.OPENSHIFT_DATA_DIR){
-
-        opts.nmap = "."+ process.env.OPENSHIFT_REPO_DIR + "bin/nmap-openshift/nmap";
+        console.log(process.env.PATH);
+        //opts.nmap = "."+ process.env.OPENSHIFT_REPO_DIR + "bin/nmap-openshift/nmap";
         fs.chmodSync(process.env.OPENSHIFT_REPO_DIR + "bin/nmap-openshift/nmap", 0775);
         console.log("OPTS", opts.nmap);
     }

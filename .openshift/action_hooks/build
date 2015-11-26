@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+
+PATH=$PATH:"$OPENSHIFT_REPO_DIR/bin/nmap-openshift/nmap"
