@@ -79,8 +79,10 @@ function isItUp(data) {
         flags: ["Pn", "sL", "--disable-arp-ping"]
     };
 
-    if(process.env.OPENSHIFT_DATA_DIR)
+    if(process.env.OPENSHIFT_DATA_DIR){
         opts.nmap = process.env.OPENSHIFT_REPO_DIR + "bin/nmap-openshift/nmap";
+        console.log("OPTS", opts.nmap);
+    }
 
     nmap.scan(opts, function (err, report) {
         if (err) deferred.reject(err);
