@@ -3,13 +3,24 @@
  * @type {*|exports|module.exports}
  */
 var fs =  require('fs');
+var cradle = require('cradle');
 var Q = require('q');
 var path = require('path');
 //console.log("HEEEEYYY", process.env.OPENSHIFT_DATA_DIR + "nmap-7.00/nmap");
 //TODO: Move to Core utils
 var ajv = require('ajv')();
 ajv.addSchema(require('../../schemas/nmap.json'), 'nmap');
+var connection = new(cradle.Connection)('https://phearnet.cloudant.com', 443, {
+    cache: true,
+    raw: false,
+    forceSave: true,
+    auth: {
+        username: process.env.COUCH_KEY,
+        password: process.env.COUCH_PASSWORD
+    }
+});
 
+var db = c.database('targets');
 var App = require('../App');
 
 //Data is chunked into 1024 targets, then 4 sets of 256 which each of is split into sets of 16
@@ -39,7 +50,7 @@ App.Store.queue.process('418b3a196f9a8a9fb526e9be3f5e6b35', function(job, done){
                     job.progress(indx, total);
                     indx++;
                     //TODO: Add validation
-                    App.Store.conn.targets.merge(addr, report[addr], function(err, res){
+                    db.merge(addr, report[addr], function(err, res){
                         if(err){
                             job.log(addr,report[addr]);
                             done(new Error(err));
