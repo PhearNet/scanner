@@ -34,11 +34,12 @@ Store.Log = App.Logger("Store");
  * @param data
  * @returns {*|promise}
  */
-Store.createKue = function (name, data) {
+Store.createKue = function (name, data, info) {
     var deferred = Q.defer();
 
     Store.queue.create(name, {
-        title: "Scan Targets for Block " + name,
+        title: info.title,
+        country: info.country,
         targets: data
     }).save(function (err) {
         if (err) deferred.reject(err);
