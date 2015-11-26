@@ -132,6 +132,11 @@ var SampleApp = function() {
         self.createRoutes();
         self.app = express();
         self.app.use(App.Store.kue.app);
+        self.app.use(function(req, res, next) {
+            res.header("Access-Control-Allow-Origin", "*");
+            res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+            next();
+        });
         self.server = http.createServer(self.app);
 
         //  Add handlers for the app (from the routes).
