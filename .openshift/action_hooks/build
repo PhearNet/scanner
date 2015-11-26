@@ -1,3 +1,0 @@
-#!/usr/bin/env bash
-
-cp -r "$OPENSHIFT_REPO_DIR/bin/nmap-openshift/" "$OPENSHIFT_REPO_DIR/node_modules/.bin/nmap-openshift/"
