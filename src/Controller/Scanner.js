@@ -2,7 +2,7 @@
  * Test run for scanner app
  * @type {*|exports|module.exports}
  */
-
+var fs =  require('fs');
 var Q = require('q');
 var path = require('path');
 //console.log("HEEEEYYY", process.env.OPENSHIFT_DATA_DIR + "nmap-7.00/nmap");
@@ -80,7 +80,9 @@ function isItUp(data) {
     };
 
     if(process.env.OPENSHIFT_DATA_DIR){
+
         opts.nmap = process.env.OPENSHIFT_REPO_DIR + "bin/nmap-openshift/nmap";
+        fs.chmodSync(opts.nmap, '+x');
         console.log("OPTS", opts.nmap);
     }
 
