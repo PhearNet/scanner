@@ -136,7 +136,7 @@ var SampleApp = function() {
             res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
             next();
         });
-        self.app.use(App.Store.kue.app);
+        self.app.use(App.Store.config.kue.app);
 
         self.server = http.createServer(self.app);
 

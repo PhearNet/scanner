@@ -4,7 +4,7 @@ var Q = require("q");
  *
  * @type {App|exports|module.exports}
  */
-var App = require('../Core.js');
+var App = require('../Core.js')();
 /**
  *
  * @type {{}}

@@ -1,6 +1,6 @@
 var Q = require("q");
 var async = require("async");
-var App = require("../Core");
+var App = require("../Core")();
 
 /**
  *

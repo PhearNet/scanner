@@ -22,11 +22,11 @@ AddressData.models = {
  */
 function createNewBlockData(opts, nation) {
     opts.country = nation;
-    opts.date = App.util.Date(opts.date, "DD/MM/YY").toDate().getTime();
+    opts.date = App.utils.Date(opts.date, "DD/MM/YY").toDate().getTime();
     opts.created = new Date().getTime();
     opts.modified = new Date().getTime();
     opts.status = "new";
-    opts.details = App.util.ip.calc(opts.from, opts.to);
+    opts.details = App.utils.ip.calc(opts.from, opts.to);
     return opts;
 }
 
@@ -123,13 +123,13 @@ AddressData.createBlockJobs = function () {
     AddressData.stores.Blocks.getAll()
         .then(function (blocks) {
             var split = 1024;
-            App.util.async.eachSeries(blocks, function (block, done) {
+            App.utils.async.eachSeries(blocks, function (block, done) {
                 //done();
                 AddressData.stores.Targets.getByBlockId(block.id)
                     .then(function (targets) {
-                        var matrix = App.util.chunk(targets, 1024);
+                        var matrix = App.utils.chunk(targets, 1024);
 
-                        App.util.async.eachSeries(matrix, function (chunk, cb) {
+                        App.utils.async.eachSeries(matrix, function (chunk, cb) {
                             chunk = chunk.map(function(data){
                                return data.id;
                             });
