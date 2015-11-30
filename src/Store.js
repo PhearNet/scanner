@@ -38,7 +38,7 @@ function Store(App, opts) {
     Store.createKue = function (name, data, info) {
         var deferred = App.utils.Q.defer();
 
-        Store.queue.create(name, {
+        Store.config.queue.create(name, {
             title: info.title,
             country: info.country,
             targets: data

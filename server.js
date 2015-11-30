@@ -179,21 +179,21 @@ var clusterWorkerSize = require('os').cpus().length;
 if(process.env.OPENSHIFT_DATA_DIR)
     clusterWorkerSize = 1;
 
-if (cluster.isMaster) {
-    /**
-     *  main():  Main code.
-     */
-    //require('./src/Controller/AddressData').createBlockJobs();
-    var App = require('./src/App');
-    var zapp = new SampleApp();
-    zapp.initialize();
-    zapp.start();
-    for (var i = 0; i < clusterWorkerSize; i++) {
-        cluster.fork();
-    }
-} else {
+//if (cluster.isMaster) {
+//    /**
+//     *  main():  Main code.
+//     */
+//    //require('./src/Controller/AddressData').createBlockJobs();
+//    var App = require('./src/App');
+//    var zapp = new SampleApp();
+//    zapp.initialize();
+//    zapp.start();
+//    for (var i = 0; i < clusterWorkerSize; i++) {
+//        cluster.fork();
+//    }
+//} else {
     require('./src/Controller/Scanner');
-}
+//}
 
 
 
