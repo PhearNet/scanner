@@ -7,7 +7,7 @@
 function Core(opts) {
     if (!Core.isSetup) {
 
-        Core.utils = require('./Utils')(opts);
+        Core.utils = require('./utils')(opts);
 
         /**
          * Core Logger
