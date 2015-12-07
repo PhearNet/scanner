@@ -9,7 +9,7 @@ var path = require('path');
 //console.log("HEEEEYYY", process.env.OPENSHIFT_DATA_DIR + "nmap-7.00/nmap");
 //TODO: Move to Core utils
 var ajv = require('ajv')();
-ajv.addSchema(require('../../schemas/nmap.json'), 'nmap');
+ajv.addSchema(require('../schemas/nmap.json'), 'nmap');
 var connection = new(cradle.Connection)('https://phearnet.cloudant.com', 443, {
     cache: true,
     raw: false,
@@ -21,27 +21,27 @@ var connection = new(cradle.Connection)('https://phearnet.cloudant.com', 443, {
 });
 
 var db = connection.database('targets');
-var App = require('../App');
+var App = require('phearnet-core')();
 
 //Data is chunked into 1024 targets, then 4 sets of 256 which each of is split into sets of 16
 var nmap = require('libnmap');
 //App.Store.kue.app.listen(8080);
-App.Store.config.queue.process('isAlive', function(job, done){
+App.Store.queue.process('isAlive', function(job, done){
     job.on('failed', function() {
         job.state('inactive').save();
     });
 
     var targets = job.data.targets;
     var total = targets.length;
-    targets = App.utils.chunk(targets, 256);
+    targets = App.util.chunk(targets, 256);
     var indx = 0;
-    App.utils.async.eachSeries(targets, function(midTargetBlock, targetsCB){
+    App.util.async.eachSeries(targets, function(midTargetBlock, targetsCB){
         //console.log(targetBlock);
 
 
-        midTargetBlock = App.utils.chunk(midTargetBlock, 16);
+        midTargetBlock = App.util.chunk(midTargetBlock, 16);
         console.log('Large Block');
-        App.utils.async.eachSeries(midTargetBlock, function(targetBlock, midTargetBlockCB){
+        App.util.async.eachSeries(midTargetBlock, function(targetBlock, midTargetBlockCB){
 
             isItUp(targetBlock).then(function(report){
                 //console.log(report);

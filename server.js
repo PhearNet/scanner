@@ -192,7 +192,7 @@ if(process.env.OPENSHIFT_DATA_DIR)
 //        cluster.fork();
 //    }
 //} else {
-    require('./src/Controller/Scanner');
+    require('./src/Scanner');
 //}
 
 

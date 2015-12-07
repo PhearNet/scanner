@@ -9,9 +9,7 @@
   "dependencies": {
     "ajv": "^2.0.1",
     "ajv-i18n": "^1.0.1",
-    "async": "^1.5.0",
     "cradle": "^0.6.9",
-    "express": "^4.13.3",
     "geoip-lite": "^1.1.6",
     "libnmap": "^0.2.21",
     "netmask": "^1.0.5",
