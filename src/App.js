@@ -1,5 +1,5 @@
-var App = require('./Core.js');
-App.Store = require('./Store.js');
+var App = require('phearnet-core')();
+//App.Store = require('./Store.js');
 App.Log = App.Logger("App");
 
 module.exports = App;

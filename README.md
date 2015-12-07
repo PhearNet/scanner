@@ -1,3 +1,2 @@
-The OpenShift `nodejs` cartridge documentation can be found at:
-
-http://openshift.github.io/documentation/oo_cartridge_guide.html#nodejs
+#scanner
+[![Dependency Status](https://www.versioneye.com/user/projects/5664efc2f376cc003d000a75/badge.svg?style=flat)](https://www.versioneye.com/user/projects/5664efc2f376cc003d000a75)
