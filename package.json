@@ -16,6 +16,6 @@
     "libnmap": "^0.2.21",
     "netmask": "^1.0.5",
     "phearnet-core": "phearnet/core",
-    "q": "^1.4.1"
+    "q": "^2.0.1"
   }
 }
