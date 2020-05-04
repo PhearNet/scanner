@@ -1,0 +1,25 @@
+# Snyk (https://snyk.io) policy file, patches or ignores known vulnerabilities.
+version: v1.14.1
+ignore: {}
+# patches apply the minimum changes required to fix a vulnerability
+patch:
+  SNYK-JS-LODASH-567746:
+    - geoip-lite > async > lodash:
+        patched: '2020-05-04T15:11:50.960Z'
+    - libnmap > async > lodash:
+        patched: '2020-05-04T15:11:50.960Z'
+    - geoip-lite > ip-address > lodash:
+        patched: '2020-05-04T15:11:50.960Z'
+    - libnmap > ip-address > lodash:
+        patched: '2020-05-04T15:11:50.960Z'
+    - core > kue > lodash-deep > lodash:
+        patched: '2020-05-04T15:11:50.960Z'
+  'npm:lodash:20180130':
+    - core > kue > lodash:
+        patched: '2020-05-04T15:11:50.960Z'
+  'npm:minimatch:20160620':
+    - core > kue > stylus > glob > minimatch:
+        patched: '2020-05-04T15:11:50.960Z'
+  'npm:uglify-js:20151024':
+    - core > kue > jade > transformers > uglify-js:
+        patched: '2020-05-04T15:11:50.960Z'
