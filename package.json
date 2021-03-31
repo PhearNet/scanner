@@ -12,7 +12,7 @@
     "cradle": "^0.6.9",
     "geoip-lite": "^1.1.6",
     "libnmap": "^0.4.16",
-    "netmask": "^1.0.5",
+    "netmask": "^2.0.1",
     "phearnet-core": "phearnet/core",
     "q": "^2.0.1",
     "snyk": "^1.317.0"
